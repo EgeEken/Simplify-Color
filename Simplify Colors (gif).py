@@ -90,7 +90,7 @@ for count in range(amount):
 
 filename = imgname[:-4] + '_Simplified_' + str(precision) + '_'
                  
-filenames = [filename + str(i+1) + '.png' for i in range(count)]
+filenames = [filename + str(i) + '.png' for i in range(count)]
 
 with imageio.get_writer(filename + 'GIF.gif', mode='I', duration=round(1/FPS, 2)) as writer:
     for filename in filenames:
