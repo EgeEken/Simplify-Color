@@ -1,4 +1,6 @@
 # Simplify Color
+
+# V4
 Simplifies the colors of an image, bringing the total amount of different colors down to a desired amount. Mostly to create stylized simplistic renditions of pictures but in certain cases it allows for size compression while keeping the resolution, general shape and structure in the original image.
 
 This program picks the given number of colors at random, so running it with the same coefficients twice will result in different images, especially so with smaller amounts of colors.
@@ -24,3 +26,10 @@ Using the "Simplify Colors (gif)" file, you can create several images at a time,
 
 # 50 results with 10 colors at 3 FPS
 ![giftest](https://user-images.githubusercontent.com/96302110/170581462-9515b7ab-9a21-435a-b206-d37c8517da11.gif)
+
+
+# V5
+Simplifies the colors further using a chain-clustering algorithm inspired by the k-means system I learned about in the data science class in my first semester. The algorithm finds chains of similar colors by starting from the desired axis, and as such will converge towards that general direction due to reasons that will become clear as i explain the algorithm further (RED,GREEN or BLUE, chosen by a user input). The algorithm starts with the "first" different color after placing all different colors in a 3d space represented by the RGB axes, then finds the closest color, adding it to the chain, it keeps finding the closest color until it starts going back by finding a color thats already part of the chain, or by being forcibly terminated by finding a color thats part of another chain (Hence why the final image converges towards one of the main colors). After creating these clusters, it finds their centers with a simple average function, then uses effectively the same system as in v4 to fit the colors in the image into the new color palette created by the center points of the clusters.
+
+Warning: The algorithm is very heavy and would take an incredibly long time with most pictures, I wouldn't recommend using it with a starting image with over 300 colors, maybe less depending on your computing power. You can use the V4 program above to simplify the picture down to a desired low number of colors, then use v5 on that new created image
+
