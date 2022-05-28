@@ -29,11 +29,17 @@ Using the "Simplify Colors (gif)" file, you can create several images at a time,
 
 
 # V5
-Simplifies the colors further using a chain-clustering algorithm inspired by the k-means system I learned about in the data science class in my first semester. The algorithm finds chains of similar colors by starting from the desired axis, and as such will converge towards the general direction of either an arbitrary color with no sorting or RED, GREEN or BLUE, chosen by a user input. The algorithm starts with the "first" (random if no color convergence input, sorted based on the r g or b order if there is an input) different color after placing all different colors in a 3d space represented by the RGB axes, then finds the closest color, adding it to the chain, it keeps finding the closest color until it starts going back by finding a color thats already part of the chain, or by being forcibly terminated by finding a color thats part of another chain. After creating these clusters, it finds their centers with a simple average function, then uses effectively the same system as in v4 to fit the colors in the image into the new color palette created by the center points of the clusters.
+Simplifies the colors further using a chain-clustering algorithm inspired by the k-means system I learned about in the data science class in my first semester. The algorithm finds chains of similar colors, it starts with the "first" (arbitrarily chosen by set generation) different color after placing all different colors in a 3d space represented by the RGB axes, then finds the closest color, adding it to the chain, it keeps finding the closest color until it starts going back by finding a color thats already part of the chain, or by being forcibly terminated by finding a color thats part of another chain. After creating these clusters, it finds their centers with a simple average function, then uses effectively the same system as in v4 to fit the colors in the image into the new color palette created by the center points of the clusters.
 
-The program is recursive and at the end of each created image, will ask if you would like to continue, if you choose to continue after the end (where theres only 1 color, making it completely unrecognizable), it will ask for an FPS value and create a GIF of the progression towards that final image which is just a single color.
+The program is recursive and at the end of each created image, will ask if you would like to continue, if you choose to continue after the end (where theres only 1 color, making it completely unrecognizable), it will ask for an FPS value and create a GIF of the progression towards that final image which is just a single color. 
+
+In most cases, each iteration roughly halves the amount of different colors. (The exact value i found while testing around with the algorithm before the final result was specifically 53.3% for three dimensions, the formula being | cluster count ~= total coord count * 0.533 | , the mathematical reason behind this, I don't completely understand yet but there seems to be a universal ratio that works for every coord count in every space range regardless of the dimension count (it was 4.8 for 1 dimension))
+
+![image](https://user-images.githubusercontent.com/96302110/170829538-a8e3a385-1379-4fc3-b3f3-a663d06afbc3.png)
 
 Warning: The algorithm is very heavy and would take an incredibly long time with most pictures, I wouldn't recommend using it with a starting image with over 300 colors, maybe less depending on your computing power. You can use the V4 program above to simplify the picture down to a desired low number of colors, then use v5 on that new created image
 
 ![itzhaksq_v4_200_Simplified_GIF](https://user-images.githubusercontent.com/96302110/170827531-38785b7f-4ed3-4b74-b26e-5dd80c32f414.gif)
+
+![pisa_Simplified_150 0_1_Simplified_GIF](https://user-images.githubusercontent.com/96302110/170828450-29f26b31-82b9-4185-844a-ead8cb2b536d.gif)
 
