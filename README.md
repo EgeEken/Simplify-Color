@@ -28,7 +28,7 @@ Using the "Simplify Colors (gif)" file, you can create several images at a time,
 ![giftest](https://user-images.githubusercontent.com/96302110/170581462-9515b7ab-9a21-435a-b206-d37c8517da11.gif)
 
 
-# V5
+# V5.1
 Simplifies the colors further using a chain-clustering algorithm inspired by the k-means system I learned about in the data science class in my first semester. The algorithm finds chains of similar colors, it starts with the "first" (arbitrarily chosen by set generation) different color after placing all different colors in a 3d space represented by the RGB axes, then finds the closest color, adding it to the chain, it keeps finding the closest color until it starts going back by finding a color thats already part of the chain, or by being forcibly terminated by finding a color thats part of another chain. After creating these clusters, it finds their centers with a simple average function, then uses effectively the same system as in v4 to fit the colors in the image into the new color palette created by the center points of the clusters.
 
 2D demonstration of how the chain system works, 10 randomly generated points in a 100x100 space formed 7 chains with the algorithm, the gray points represent the points and the stars represent the cluster centers
@@ -46,3 +46,31 @@ Warning: The algorithm is very heavy and would take an incredibly long time with
 
 ![pisa_Simplified_150 0_1_Simplified_GIF](https://user-images.githubusercontent.com/96302110/170828450-29f26b31-82b9-4185-844a-ead8cb2b536d.gif)
 
+
+# V5.2
+This version uses the same general system as V5.1, but uses a different clustering algorithm, [the hiearchical system](https://en.wikipedia.org/wiki/Hierarchical_clustering). This allows for faster computing of clusters, and also of specific color counts just like v4, unlike in v5.1 which chose the amount of colors based on the results of the chain cluster algorithm. However, i personally found that the results are inferior to those from v5.1.
+
+2D Demonstration of how the chain system works:
+
+![proper_GIF](https://user-images.githubusercontent.com/96302110/175520436-b09e5238-da8a-48e9-9240-4511b4ba24e8.gif)
+
+# Comparisons with Octree, V5.1 and V5.2:
+
+![comparison](https://user-images.githubusercontent.com/96302110/175521247-b28254cb-6225-4b42-83bf-6eaee473636d.png)
+
+![comparison](https://user-images.githubusercontent.com/96302110/175521180-5cfc8346-a8fa-4d5a-9d16-885db5843376.png)
+
+
+# Results of a survey comparing the three
+
+The participants were not told which algorithm was which.
+
+![image](https://user-images.githubusercontent.com/96302110/175522239-719d36ba-37c5-4ac8-8e25-f6d1ef07cc37.png)
+
+# Conclusion
+
+Overall, octree is still a more consistent algorithm, that generally brings out better results, and its significantly faster than either of my algorithms, but speaking strictly of results, it seems v5.1 puts out comparable or sometimes even better results than octree, reaching as much as 80% of the votes in one comparison where octree received only 8%. I'm quite happy with these results considering the amount of industry applications of the octree color simplification algorithm. 
+
+The most notable difference to me seems to be octree's (and v5.2's) tendency to sacrifice contrast in favor of more a consistent image, whereas v5.1 generally tends to keep the contrast between the object and background more noticable especially at lower color counts, i believe the difference between the results for octree and v5.1 at 3 colors on the eiffel tower picture illustrate this difference the best:
+
+![comparison 3 (wasnt included in the original picture)](https://user-images.githubusercontent.com/96302110/175523669-01cbef17-fe98-4bb2-8c3f-f09091a3b07d.png)
