@@ -7,9 +7,6 @@ This program picks the given number of colors at random, so running it with the 
 
 See also: [Simplify](https://github.com/EgeEken/Simplify)
 
-Known issues:
-- Only square images (with the same horizontal and vertical length) work
-
 # Itzhak Perlman
 ![Github readme itzhak](https://user-images.githubusercontent.com/96302110/170580353-ad76f66e-6f5a-4bab-8a12-8bd7a17de28f.png)
 
